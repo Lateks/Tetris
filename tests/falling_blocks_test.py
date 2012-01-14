@@ -17,7 +17,7 @@ class FallingBlockTestSuites:
 
     @staticmethod
     def when_a_block_is_dropped_suite():
-        tests = ["test_a_block_is_falling"]
+        tests = ["test_a_block_is_falling", "test_block_starts_from_the_top_middle"]
         return unittest.TestSuite(map(WhenABlockIsDropped, tests))
 
 class ANewBoard(unittest.TestCase):
@@ -39,9 +39,9 @@ class WhenABlockIsDropped(unittest.TestCase):
     def test_a_block_is_falling(self):
         self.assertTrue(self.board.has_falling_blocks())
 
-#    def test_block_starts_from_the_top_middle(self)
-#        expected_board = ".X.\n" + 2 * "...\n"
-#        self.assertEqual(expected_board, str(self.board))
+    def test_block_starts_from_the_top_middle(self):
+        expected_board = ".X.\n" + 2 * "...\n"
+        self.assertEqual(expected_board, str(self.board))
 
 #    def test_block_moves_down_one_row_per_tick(self):
 #        self.board.tick()
