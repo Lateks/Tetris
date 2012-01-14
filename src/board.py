@@ -2,6 +2,7 @@ class Board:
     def __init__(self, rows, columns):
         self.rows = rows
         self.columns = columns
+        self.has_falling = False
 
     def __str__(self):
         representation = ''
@@ -12,4 +13,7 @@ class Board:
         return representation
 
     def has_falling_blocks(self):
-        return False
+        return self.has_falling
+
+    def drop(self, block):
+        self.has_falling = True

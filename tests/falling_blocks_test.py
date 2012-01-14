@@ -1,16 +1,24 @@
 import unittest
 from src.board import Board
+from src.block import Block
 
 class FallingBlockTestSuites:
     @staticmethod
     def suite():
         a_new_board_tests = FallingBlockTestSuites.new_board_suite()
-        return a_new_board_tests
+        block_dropped_tests = FallingBlockTestSuites.when_a_block_is_dropped_suite()
+        return unittest.TestSuite(
+            [a_new_board_tests, block_dropped_tests])
 
     @staticmethod
     def new_board_suite():
         tests = ["test_is_empty", "test_has_no_falling_blocks"]
         return unittest.TestSuite(map(ANewBoard, tests))
+
+    @staticmethod
+    def when_a_block_is_dropped_suite():
+        tests = ["test_a_block_is_falling"]
+        return unittest.TestSuite(map(WhenABlockIsDropped, tests))
 
 class ANewBoard(unittest.TestCase):
     def setUp(self):
@@ -23,13 +31,13 @@ class ANewBoard(unittest.TestCase):
     def test_has_no_falling_blocks(self):
         self.assertFalse(self.board.has_falling_blocks())
 
-#class WhenABlockIsDropped(unittest.TestCase):
-#    def setUp(self):
-#        self.board = Board(3, 3)
-#        self.board.drop(Block('X'))
+class WhenABlockIsDropped(unittest.TestCase):
+    def setUp(self):
+        self.board = Board(3, 3)
+        self.board.drop(Block('X'))
 
-#    def test_a_block_is_falling(self):
-#        self.assertTrue(self.board.has_falling_blocks())
+    def test_a_block_is_falling(self):
+        self.assertTrue(self.board.has_falling_blocks())
 
 #    def test_block_starts_from_the_top_middle(self)
 #        expected_board = ".X.\n" + 2 * "...\n"
