@@ -10,3 +10,6 @@ class Board:
                 representation += '.'
             representation += '\n'
         return representation
+
+    def has_falling_blocks(self):
+        return False

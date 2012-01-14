@@ -9,7 +9,7 @@ class FallingBlockTestSuites:
 
     @staticmethod
     def new_board_suite():
-        tests = ["test_is_empty"]
+        tests = ["test_is_empty", "test_has_no_falling_blocks"]
         return unittest.TestSuite(map(ANewBoard, tests))
 
 class ANewBoard(unittest.TestCase):
@@ -20,8 +20,8 @@ class ANewBoard(unittest.TestCase):
         expected_board = 3 * "...\n"
         self.assertEqual(expected_board, str(self.board))
 
-    #def test_has_no_falling_blocks(self):
-    #    self.assertFalse(board.has_falling())
+    def test_has_no_falling_blocks(self):
+        self.assertFalse(self.board.has_falling_blocks())
 
 #class WhenABlockIsDropped(unittest.TestCase):
 #    def setUp(self):
@@ -29,7 +29,7 @@ class ANewBoard(unittest.TestCase):
 #        self.board.drop(Block('X'))
 
 #    def test_a_block_is_falling(self):
-#        self.assertTrue(self.board.has_falling())
+#        self.assertTrue(self.board.has_falling_blocks())
 
 #    def test_block_starts_from_the_top_middle(self)
 #        expected_board = ".X.\n" + 2 * "...\n"
@@ -54,13 +54,13 @@ class ANewBoard(unittest.TestCase):
 #        self.board.tick()
 
 #    def test_block_is_still_falling_on_the_last_row(self):
-#        self.assertTrue(self.board.has_falling())
+#        self.assertTrue(self.board.has_falling_blocks())
 #        expected_board = 2 * "...\n" + ".X.\n"
 #        self.assertEqual(expected_board, str(self.board)
 
 #    def test_block_stops_when_it_hits_the_bottom(self):
 #        self.board.tick()
-#        assertFalse(self.board.has_falling())
+#        assertFalse(self.board.has_falling_blocks())
 #        expected_board = 2 * "...\n" + ".X.\n"
 #        self.assertEqual(expected_board, str(self.board))
 
@@ -76,12 +76,12 @@ class ANewBoard(unittest.TestCase):
 #        self.expected_board = "...\n" + ".Y.\n" + ".X.\n"
 
 #    def test_block_is_still_falling_right_above_the_other_block(self):
-#        self.assertTrue(self.board.has_falling())
+#        self.assertTrue(self.board.has_falling_blocks())
 #        self.assertEqual(self.expected_board, str(self.board))
 
 #    def test_block_stops_when_it_hits_another_block(self):
 #        self.board.tick()
-#        self.assertFalse(self.board.has_falling())
+#        self.assertFalse(self.board.has_falling_blocks())
 #        self.assertEqual(self.expected_board, str(self.board))
 
 if __name__ == '__main__':
