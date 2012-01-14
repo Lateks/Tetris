@@ -11,14 +11,17 @@ class Board:
         representation = ''
         for y in range(0, self.rows):
             for x in range(0, self.columns):
-                block_repr = None
-                for block in self.blocks:
-                    if block.is_at_position((x, y)):
-                        block_repr = str(block)
-                        break
+                block_repr = self.__get_block_repr_if_exists_at((x, y))
                 representation += block_repr if block_repr else '.'
             representation += '\n'
         return representation
+
+    def __get_block_repr_if_exists_at(self, (x, y)):
+        for block in self.blocks:
+            if block.is_at_position((x, y)):
+                block_repr = str(block)
+                return block_repr
+        return None
 
     def has_falling_blocks(self):
         return self.has_falling
