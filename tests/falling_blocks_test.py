@@ -12,15 +12,11 @@ class FallingBlockTestSuites:
 
     @staticmethod
     def new_board_suite():
-        #tests = ["test_is_empty", "test_has_no_falling_blocks"]
-        #return unittest.TestSuite(map(ANewBoard, tests))
         loader = unittest.TestLoader()
         return loader.loadTestsFromTestCase(ANewBoard)
 
     @staticmethod
     def when_a_block_is_dropped_suite():
-        #tests = ["test_a_block_is_falling", "test_block_starts_from_the_top_middle"]
-        #return unittest.TestSuite(map(WhenABlockIsDropped, tests))
         loader = unittest.TestLoader()
         return loader.loadTestsFromTestCase(WhenABlockIsDropped)
 
@@ -47,10 +43,10 @@ class WhenABlockIsDropped(unittest.TestCase):
         expected_board = ".X.\n" + 2 * "...\n"
         self.assertEqual(expected_board, str(self.board))
 
-#    def test_block_moves_down_one_row_per_tick(self):
-#        self.board.tick()
-#        expected_board = "...\n" + ".X.\n" + "...\n"
-#        self.assertEqual(expected_board, str(self.board))
+    def test_block_moves_down_one_row_per_tick(self):
+        self.board.tick()
+        expected_board = "...\n" + ".X.\n" + "...\n"
+        self.assertEqual(expected_board, str(self.board))
 
 #    def test_at_most_one_block_may_be_falling_at_a_time(self):
 #        with self.assertRaises(IllegalStateException):

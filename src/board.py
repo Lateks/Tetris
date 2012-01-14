@@ -1,16 +1,22 @@
+from math import floor
+
 class Board:
     def __init__(self, rows, columns):
         self.rows = rows
         self.columns = columns
         self.has_falling = False
+        self.blocks = list()
 
     def __str__(self):
         representation = ''
-        if self.has_falling:
-            return ".X.\n" + 2 * "...\n"
-        for i in range(0, self.rows):
-            for i in range(0, self.columns):
-                representation += '.'
+        for y in range(0, self.rows):
+            for x in range(0, self.columns):
+                block_repr = None
+                for block in self.blocks:
+                    if block.is_at_position((x, y)):
+                        block_repr = str(block)
+                        break
+                representation += block_repr if block_repr else '.'
             representation += '\n'
         return representation
 
@@ -18,4 +24,12 @@ class Board:
         return self.has_falling
 
     def drop(self, block):
+        self.blocks.insert(0, block)
+        x, y = int(floor(self.columns / 2)), 0
+        block.set_position((x, y))
         self.has_falling = True
+
+    def tick(self):
+        falling_block = self.blocks[0]
+        x, y = falling_block.get_position()
+        falling_block.set_position((x, y + 1))
