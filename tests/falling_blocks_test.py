@@ -12,13 +12,17 @@ class FallingBlockTestSuites:
 
     @staticmethod
     def new_board_suite():
-        tests = ["test_is_empty", "test_has_no_falling_blocks"]
-        return unittest.TestSuite(map(ANewBoard, tests))
+        #tests = ["test_is_empty", "test_has_no_falling_blocks"]
+        #return unittest.TestSuite(map(ANewBoard, tests))
+        loader = unittest.TestLoader()
+        return loader.loadTestsFromTestCase(ANewBoard)
 
     @staticmethod
     def when_a_block_is_dropped_suite():
-        tests = ["test_a_block_is_falling", "test_block_starts_from_the_top_middle"]
-        return unittest.TestSuite(map(WhenABlockIsDropped, tests))
+        #tests = ["test_a_block_is_falling", "test_block_starts_from_the_top_middle"]
+        #return unittest.TestSuite(map(WhenABlockIsDropped, tests))
+        loader = unittest.TestLoader()
+        return loader.loadTestsFromTestCase(WhenABlockIsDropped)
 
 class ANewBoard(unittest.TestCase):
     def setUp(self):
