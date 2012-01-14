@@ -1,5 +1,5 @@
 import unittest
-from falling_blocks_test import FallingBlockTestSuites
+from tests.falling_blocks_test import FallingBlockTestSuites
 
 def run_tests():
     testsuite = FallingBlockTestSuites.suite()

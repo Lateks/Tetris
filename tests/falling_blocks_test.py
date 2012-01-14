@@ -1,5 +1,5 @@
 import unittest
-from board import Board
+from src.board import Board
 
 class FallingBlockTestSuites:
     @staticmethod
