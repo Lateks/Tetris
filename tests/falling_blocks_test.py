@@ -3,23 +3,25 @@ from src.board import Board
 from src.block import Block
 from src.exception import IllegalStateException
 
-class FallingBlockTestSuites:
-    @staticmethod
-    def suite():
-        a_new_board_tests = FallingBlockTestSuites.new_board_suite()
-        block_dropped_tests = FallingBlockTestSuites.when_a_block_is_dropped_suite()
+class FallingBlockTestSuiteGenerator:
+    def __init__(self):
+        self.loader = unittest.TestLoader()
+
+    def suite(self):
+        a_new_board = self.new_board_suite()
+        block_dropped = self.when_a_block_is_dropped_suite()
+        block_reaches_bottom = self.when_a_block_reaches_the_bottom_suite()
         return unittest.TestSuite(
-            [a_new_board_tests, block_dropped_tests])
+            [a_new_board, block_dropped, block_reaches_bottom])
 
-    @staticmethod
-    def new_board_suite():
-        loader = unittest.TestLoader()
-        return loader.loadTestsFromTestCase(ANewBoard)
+    def new_board_suite(self):
+        return self.loader.loadTestsFromTestCase(ANewBoard)
 
-    @staticmethod
-    def when_a_block_is_dropped_suite():
-        loader = unittest.TestLoader()
-        return loader.loadTestsFromTestCase(WhenABlockIsDropped)
+    def when_a_block_is_dropped_suite(self):
+        return self.loader.loadTestsFromTestCase(WhenABlockIsDropped)
+
+    def when_a_block_reaches_the_bottom_suite(self):
+        return self.loader.loadTestsFromTestCase(WhenABlockReachesTheBottom)
 
 class ANewBoard(unittest.TestCase):
     def setUp(self):
@@ -58,7 +60,7 @@ class WhenABlockIsDropped(unittest.TestCase):
 #class WhenABlockReachesTheBottom(unittest.TestCase):
 #    def setUp(self):
 #        self.board = Board(3, 3)
-#        self.board.drop(new Block('X'))
+#        self.board.drop(Block('X'))
 #        self.board.tick()
 #        self.board.tick()
 
