@@ -83,6 +83,8 @@ class WhenABlockReachesTheBottom(unittest.TestCase):
         self.assertFalse(self.board.has_falling_blocks())
         expected_board = 2 * "...\n" + ".X.\n"
         self.assertEqual(expected_board, str(self.board))
+        with self.assertRaises(IllegalStateException):
+            self.board.tick()
 
 class WhenABlockLandsOnAnotherBlock(unittest.TestCase):
     def setUp(self):
@@ -103,6 +105,8 @@ class WhenABlockLandsOnAnotherBlock(unittest.TestCase):
         self.board.tick()
         self.assertFalse(self.board.has_falling_blocks())
         self.assertEqual(self.expected_board, str(self.board))
+        with self.assertRaises(IllegalStateException):
+            self.board.tick()
 
 if __name__ == '__main__':
     unittest.main()
