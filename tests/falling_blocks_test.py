@@ -11,8 +11,10 @@ class FallingBlockTestSuiteGenerator:
         a_new_board = self.new_board_suite()
         block_dropped = self.when_a_block_is_dropped_suite()
         block_reaches_bottom = self.when_a_block_reaches_the_bottom_suite()
+        block_lands_on_another = self.block_lands_on_another()
         return unittest.TestSuite(
-            [a_new_board, block_dropped, block_reaches_bottom])
+            [a_new_board, block_dropped, block_reaches_bottom,
+            block_lands_on_another])
 
     def new_board_suite(self):
         return self.loader.loadTestsFromTestCase(ANewBoard)
@@ -22,6 +24,9 @@ class FallingBlockTestSuiteGenerator:
 
     def when_a_block_reaches_the_bottom_suite(self):
         return self.loader.loadTestsFromTestCase(WhenABlockReachesTheBottom)
+
+    def block_lands_on_another(self):
+        return self.loader.loadTestsFromTestCase(WhenABlockLandsOnAnotherBlock)
 
 class ANewBoard(unittest.TestCase):
     def setUp(self):
@@ -79,25 +84,25 @@ class WhenABlockReachesTheBottom(unittest.TestCase):
         expected_board = 2 * "...\n" + ".X.\n"
         self.assertEqual(expected_board, str(self.board))
 
-#class WhenABlockLandsOnAnotherBlock(unittest.TestCase):
-#    def setUp(self):
-#        self.board = Block(3, 3)
-#        self.board.drop(Block('X'))
-#        self.board.tick()
-#        self.board.tick()
-#        self.board.tick()
-#        board.drop(Block('Y'))
-#        board.tick()
-#        self.expected_board = "...\n" + ".Y.\n" + ".X.\n"
+class WhenABlockLandsOnAnotherBlock(unittest.TestCase):
+    def setUp(self):
+        self.board = Board(3, 3)
+        self.board.drop(Block('X'))
+        self.board.tick()
+        self.board.tick()
+        self.board.tick()
+        self.board.drop(Block('Y'))
+        self.board.tick()
+        self.expected_board = "...\n" + ".Y.\n" + ".X.\n"
 
-#    def test_block_is_still_falling_right_above_the_other_block(self):
-#        self.assertTrue(self.board.has_falling_blocks())
-#        self.assertEqual(self.expected_board, str(self.board))
+    def test_block_is_still_falling_right_above_the_other_block(self):
+        self.assertTrue(self.board.has_falling_blocks())
+        self.assertEqual(self.expected_board, str(self.board))
 
-#    def test_block_stops_when_it_hits_another_block(self):
-#        self.board.tick()
-#        self.assertFalse(self.board.has_falling_blocks())
-#        self.assertEqual(self.expected_board, str(self.board))
+    def test_block_stops_when_it_hits_another_block(self):
+        self.board.tick()
+        self.assertFalse(self.board.has_falling_blocks())
+        self.assertEqual(self.expected_board, str(self.board))
 
 if __name__ == '__main__':
     unittest.main()

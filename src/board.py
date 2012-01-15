@@ -17,12 +17,9 @@ class Board:
             representation += '\n'
         return representation
 
-    def __get_block_repr_if_exists_at(self, (x, y)):
-        for block in self.blocks:
-            if block.is_at_position((x, y)):
-                block_repr = str(block)
-                return block_repr
-        return None
+    def __get_block_repr_if_exists_at(self, position):
+        block = self.__get_block_at(position)
+        return str(block) if block else None
 
     def has_falling_blocks(self):
         return self.has_falling
@@ -44,13 +41,25 @@ class Board:
             raise IllegalStateException('Cannot tick, no blocks falling.')
         falling_block = self.blocks[0]
         x, y = falling_block.get_position()
-        if self.__is_last_row(y):
+        if self.__is_last_row(y) or self.__contains_a_block((x, y + 1)):
             self.has_falling = False
         else:
             falling_block.set_position((x, y + 1))
 
+    def __no_falling_blocks(self):
+        return not self.has_falling
+
     def __is_last_row(self, row):
         return row == self.rows - 1
 
-    def __no_falling_blocks(self):
-        return not self.has_falling
+    def __contains_a_block(self, position):
+        if self.__get_block_at(position):
+            return True
+        else:
+            return False
+
+    def __get_block_at(self, position):
+        for block in self.blocks:
+            if block.is_at_position(position):
+                return block
+        return None
