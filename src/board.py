@@ -1,4 +1,5 @@
 from math import floor
+from exception import IllegalStateException
 
 class Board:
     def __init__(self, rows, columns):
@@ -27,10 +28,16 @@ class Board:
         return self.has_falling
 
     def drop(self, block):
+        if self.has_falling:
+            raise IllegalStateException(
+                'Only one block may be falling at a time.')
+        self.__new_block(block)
+        self.has_falling = True
+
+    def __new_block(self, block):
         self.blocks.insert(0, block)
         x, y = int(floor(self.columns / 2)), 0
         block.set_position((x, y))
-        self.has_falling = True
 
     def tick(self):
         falling_block = self.blocks[0]

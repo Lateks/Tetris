@@ -1,6 +1,7 @@
 import unittest
 from src.board import Board
 from src.block import Block
+from src.exception import IllegalStateException
 
 class FallingBlockTestSuites:
     @staticmethod
@@ -48,11 +49,11 @@ class WhenABlockIsDropped(unittest.TestCase):
         expected_board = "...\n" + ".X.\n" + "...\n"
         self.assertEqual(expected_board, str(self.board))
 
-#    def test_at_most_one_block_may_be_falling_at_a_time(self):
-#        with self.assertRaises(IllegalStateException):
-#            self.board.drop(Block('Y'))
-#        expected_board = ".X.\n" + 2 * "...\n"
-#        self.assertEqual(expected_board, str(self.board))
+    def test_at_most_one_block_may_be_falling_at_a_time(self):
+        with self.assertRaises(IllegalStateException):
+            self.board.drop(Block('Y'))
+        expected_board = ".X.\n" + 2 * "...\n"
+        self.assertEqual(expected_board, str(self.board))
 
 #class WhenABlockReachesTheBottom(unittest.TestCase):
 #    def setUp(self):
