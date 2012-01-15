@@ -34,6 +34,10 @@ class ANewBoard(unittest.TestCase):
     def test_has_no_falling_blocks(self):
         self.assertFalse(self.board.has_falling_blocks())
 
+    def test_cannot_tick(self):
+        with self.assertRaises(IllegalStateException):
+            self.board.tick()
+
 class WhenABlockIsDropped(unittest.TestCase):
     def setUp(self):
         self.board = Board(3, 3)

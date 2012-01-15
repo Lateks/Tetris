@@ -40,6 +40,8 @@ class Board:
         block.set_position((x, y))
 
     def tick(self):
+        if self.__no_falling_blocks():
+            raise IllegalStateException('Cannot tick, no blocks falling.')
         falling_block = self.blocks[0]
         x, y = falling_block.get_position()
         if self.__is_last_row(y):
@@ -49,3 +51,6 @@ class Board:
 
     def __is_last_row(self, row):
         return row == self.rows - 1
+
+    def __no_falling_blocks(self):
+        return not self.has_falling
