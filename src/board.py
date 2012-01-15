@@ -42,4 +42,10 @@ class Board:
     def tick(self):
         falling_block = self.blocks[0]
         x, y = falling_block.get_position()
-        falling_block.set_position((x, y + 1))
+        if self.__is_last_row(y):
+            self.has_falling = False
+        else:
+            falling_block.set_position((x, y + 1))
+
+    def __is_last_row(self, row):
+        return row == self.rows - 1

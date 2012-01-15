@@ -57,23 +57,23 @@ class WhenABlockIsDropped(unittest.TestCase):
         expected_board = ".X.\n" + 2 * "...\n"
         self.assertEqual(expected_board, str(self.board))
 
-#class WhenABlockReachesTheBottom(unittest.TestCase):
-#    def setUp(self):
-#        self.board = Board(3, 3)
-#        self.board.drop(Block('X'))
-#        self.board.tick()
-#        self.board.tick()
+class WhenABlockReachesTheBottom(unittest.TestCase):
+    def setUp(self):
+        self.board = Board(3, 3)
+        self.board.drop(Block('X'))
+        self.board.tick()
+        self.board.tick()
 
-#    def test_block_is_still_falling_on_the_last_row(self):
-#        self.assertTrue(self.board.has_falling_blocks())
-#        expected_board = 2 * "...\n" + ".X.\n"
-#        self.assertEqual(expected_board, str(self.board)
+    def test_block_is_still_falling_on_the_last_row(self):
+        self.assertTrue(self.board.has_falling_blocks())
+        expected_board = 2 * "...\n" + ".X.\n"
+        self.assertEqual(expected_board, str(self.board))
 
-#    def test_block_stops_when_it_hits_the_bottom(self):
-#        self.board.tick()
-#        assertFalse(self.board.has_falling_blocks())
-#        expected_board = 2 * "...\n" + ".X.\n"
-#        self.assertEqual(expected_board, str(self.board))
+    def test_block_stops_when_it_hits_the_bottom(self):
+        self.board.tick()
+        self.assertFalse(self.board.has_falling_blocks())
+        expected_board = 2 * "...\n" + ".X.\n"
+        self.assertEqual(expected_board, str(self.board))
 
 #class WhenABlockLandsOnAnotherBlock(unittest.TestCase):
 #    def setUp(self):
