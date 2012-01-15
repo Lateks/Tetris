@@ -40,14 +40,24 @@ class Board:
         if self.__no_falling_blocks():
             raise IllegalStateException('Cannot tick, no blocks falling.')
         falling_block = self.blocks[0]
-        x, y = falling_block.get_position()
-        if self.__is_last_row(y) or self.__contains_a_block((x, y + 1)):
-            self.has_falling = False
-        else:
-            falling_block.set_position((x, y + 1))
+        self.__move_down_one_row_or_stop(falling_block)
 
     def __no_falling_blocks(self):
         return not self.has_falling
+
+    def __move_down_one_row_or_stop(self, block):
+        x, y = block.get_position()
+        new_row = y + 1
+        if self.__block_should_stop_falling_at((x, y)):
+            self.has_falling = False
+        else:
+            block.set_position((x, new_row))
+
+    def __block_should_stop_falling_at(self, position):
+        x, y = position
+        block_on_last_row = self.__is_last_row(y)
+        block_on_top_of_a_block = self.__contains_a_block((x, y + 1))
+        return block_on_last_row or block_on_top_of_a_block
 
     def __is_last_row(self, row):
         return row == self.rows - 1
