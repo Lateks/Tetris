@@ -2,6 +2,8 @@ from math import floor
 from exception import IllegalStateException
 
 class Board:
+    empty_tile = '.'
+
     def __init__(self, rows, columns):
         self.rows = rows
         self.columns = columns
@@ -12,14 +14,13 @@ class Board:
         representation = ''
         for y in range(0, self.rows):
             for x in range(0, self.columns):
-                block_repr = self.__get_block_repr_if_exists_at((x, y))
-                representation += block_repr if block_repr else '.'
+                representation += self.__get_block_repr_or_empty_tile_at((x, y))
             representation += '\n'
         return representation
 
-    def __get_block_repr_if_exists_at(self, position):
+    def __get_block_repr_or_empty_tile_at(self, position):
         block = self.__get_block_at(position)
-        return str(block) if block else None
+        return str(block) if block else self.empty_tile
 
     def has_falling_blocks(self):
         return self.has_falling
