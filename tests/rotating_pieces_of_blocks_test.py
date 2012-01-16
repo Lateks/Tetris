@@ -17,17 +17,21 @@ class RotatingPiecesOfBlocksTestSuiteGenerator:
 
 class APieceOf3x3Blocks(unittest.TestCase):
     def setUp(self):
-        self.piece_repr = 2 * ".X.\n" + "...\n"
+        self.piece_repr = ".X.\n" + \
+                          ".X.\n" + \
+                          "...\n"
         self.piece = Piece(self.piece_repr)
 
     def test_consists_of_many_blocks(self):
         self.assertEqual(self.piece_repr, str(self.piece))
-#
-#    def test_can_be_rotated_right(self):
-#        self.piece = self.piece.rotate_right()
-#        expected_piece = "...\n" + ".XX\n" + "...\n"
-#        self.assertEqual(expected_piece, str(self.piece))
-#
+
+    def test_can_be_rotated_right(self):
+        self.piece = self.piece.rotate_right()
+        expected_piece = "...\n" + \
+                         ".XX\n" + \
+                         "...\n"
+        self.assertEqual(expected_piece, str(self.piece))
+
 #    def test_can_be_rotated_left(self):
 #        piece = self.piece.rotate_left()
 #        expected_piece = "...\n" + "XX.\n" + "...\n"
