@@ -1,4 +1,4 @@
-class Piece:
+class Piece(object):
     def __init__(self, piece_repr):
         self.piece = piece_repr.split('\n')
         self.piece.pop(-1)

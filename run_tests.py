@@ -1,14 +1,14 @@
 import unittest
 from tests.falling_blocks_test import FallingBlockTestSuiteGenerator
 from tests.rotating_pieces_of_blocks_test import RotatingPiecesOfBlocksTestSuiteGenerator
-#from tests.rotating_tetrominoes_test import RotatingTetrominoesTestSuiteGenerator
+from tests.rotating_tetrominoes_test import RotatingTetrominoesTestSuiteGenerator
 
 def run_tests():
     falling_blocks_suite = get_falling_blocks_suite()
     rotating_pieces_suite = get_rotating_pieces_suite()
-#    rotating_tetrominoes_suite = get_rotating_tetrominoes_suite()
+    rotating_tetrominoes_suite = get_rotating_tetrominoes_suite()
     test_suite = unittest.TestSuite([falling_blocks_suite,
-        rotating_pieces_suite]) #, rotating_tetrominoes_suite])
+        rotating_pieces_suite, rotating_tetrominoes_suite])
     unittest.TextTestRunner(verbosity = 2).run(test_suite)
 
 def get_falling_blocks_suite():
