@@ -1,33 +1,35 @@
 class Piece:
     def __init__(self, piece_repr):
-        self.piece_repr = piece_repr.split('\n')
-        self.piece_repr.pop(-1)
+        self.piece = piece_repr.split('\n')
+        self.piece.pop(-1)
 
     def __str__(self):
-        return self.__concatenate_rows_with_newlines(self.piece_repr)
+        return self.__concatenate_rows_to_string(self.piece)
 
     def rotate_right(self):
-        rows = cols = len(self.piece_repr)
-        new_piece_repr = list()
+        rows = cols = len(self.piece)
+        rotated_piece = list()
         for col in range(0, cols):
-            new_row_repr = ''
+            new_row = ''
             for row in reversed(range(0, rows)):
-                new_row_repr += self.piece_repr[row][col]
-            new_piece_repr.append(new_row_repr)
-        return Piece(self.__concatenate_rows_with_newlines(new_piece_repr))
+                new_row += self.piece[row][col]
+            rotated_piece.append(new_row)
+        rotated_piece_repr = self.__concatenate_rows_to_string(rotated_piece)
+        return Piece(rotated_piece_repr)
 
     def rotate_left(self):
-        rows = cols = len(self.piece_repr)
-        new_piece_repr = list()
+        rows = cols = len(self.piece)
+        rotated_piece = list()
         for col in reversed(range(0, cols)):
-            new_row_repr = ''
+            new_row = ''
             for row in range(0, cols):
-                new_row_repr += self.piece_repr[row][col]
-            new_piece_repr.append(new_row_repr)
-        return Piece(self.__concatenate_rows_with_newlines(new_piece_repr))
+                new_row += self.piece[row][col]
+            rotated_piece.append(new_row)
+        rotated_piece_repr = self.__concatenate_rows_to_string(rotated_piece)
+        return Piece(rotated_piece_repr)
 
-    def __concatenate_rows_with_newlines(self, repr_rows):
+    def __concatenate_rows_to_string(self, rows):
         representation = ''
-        for row in repr_rows:
+        for row in rows:
             representation += row + '\n'
         return representation
