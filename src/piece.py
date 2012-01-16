@@ -16,6 +16,16 @@ class Piece:
             new_piece_repr.append(new_row_repr)
         return Piece(self.__concatenate_rows_with_newlines(new_piece_repr))
 
+    def rotate_left(self):
+        rows = cols = len(self.piece_repr)
+        new_piece_repr = list()
+        for col in reversed(range(0, cols)):
+            new_row_repr = ''
+            for row in range(0, cols):
+                new_row_repr += self.piece_repr[row][col]
+            new_piece_repr.append(new_row_repr)
+        return Piece(self.__concatenate_rows_with_newlines(new_piece_repr))
+
     def __concatenate_rows_with_newlines(self, repr_rows):
         representation = ''
         for row in repr_rows:
