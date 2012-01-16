@@ -5,7 +5,7 @@ class Block:
     def __str__(self):
         return self.type
 
-    def set_position(self, (x, y)):
+    def move_to(self, (x, y)):
         self.position = (x, y)
 
     def get_position(self):
@@ -13,3 +13,7 @@ class Block:
 
     def is_at_position(self, (x, y)):
         return self.position == (x, y)
+
+    def move_down(self):
+        x, y = self.position
+        self.position = (x, y + 1)

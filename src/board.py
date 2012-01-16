@@ -35,7 +35,7 @@ class Board:
     def __new_block(self, block):
         self.blocks.insert(0, block)
         x, y = int(floor(self.columns / 2)), 0
-        block.set_position((x, y))
+        block.move_to((x, y))
 
     def tick(self):
         if self.__no_falling_blocks():
@@ -52,7 +52,7 @@ class Board:
         if self.__block_should_stop_falling_at((x, y)):
             self.has_falling = False
         else:
-            block.set_position((x, new_row))
+            block.move_down()
 
     def __block_should_stop_falling_at(self, position):
         x, y = position
