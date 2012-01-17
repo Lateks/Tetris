@@ -8,6 +8,16 @@ T_SHAPE = Tetrominoe(".T.\n" + \
                      "TTT\n" + \
                      "...\n")
 
+I_SHAPE = Tetrominoe(".....\n" + \
+                     ".....\n" + \
+                     "IIII.\n" + \
+                     ".....\n" + \
+                     ".....\n")
+
+O_SHAPE = Tetrominoe(".OO\n" + \
+                     ".OO\n" + \
+                     "...\n")
+
 L_SHAPE = Tetrominoe("...\n" + \
                      "LLL\n" + \
                      "L..\n")
