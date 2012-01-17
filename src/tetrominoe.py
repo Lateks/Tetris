@@ -7,3 +7,19 @@ class Tetrominoe(Piece):
 T_SHAPE = Tetrominoe(".T.\n" + \
                      "TTT\n" + \
                      "...\n")
+
+L_SHAPE = Tetrominoe("...\n" + \
+                     "LLL\n" + \
+                     "L..\n")
+
+J_SHAPE = Tetrominoe("...\n" + \
+                     "JJJ\n" + \
+                     "..J\n")
+
+Z_SHAPE = Tetrominoe("...\n" + \
+                     "ZZ.\n" + \
+                     ".ZZ\n")
+
+S_SHAPE = Tetrominoe("...\n" + \
+                     ".SS\n" + \
+                     "SS.\n")
