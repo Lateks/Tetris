@@ -11,15 +11,23 @@ class Tetrominoe(Piece):
         if self.current_rotation == 0:
             return str(self)
         elif self.current_rotation > 0:
-            rotation = super(Tetrominoe, self).rotate_left()
-            for i in range(1, self.current_rotation):
-                rotation = rotation.rotate_left()
+            rotation = self.__rotate_piece_left(self.current_rotation)
             return str(rotation)
         else:
-            rotation = super(Tetrominoe, self).rotate_right()
-            for i in range(1, abs(self.current_rotation)):
-                rotation = rotation.rotate_right()
+            rotation = self.__rotate_piece_right(abs(self.current_rotation))
             return str(rotation)
+
+    def __rotate_piece_left(self, times):
+        rotation = super(Tetrominoe, self).rotate_left()
+        for i in range(1, times):
+            rotation = rotation.rotate_left()
+        return rotation
+
+    def __rotate_piece_right(self, times):
+        rotation = super(Tetrominoe, self).rotate_right()
+        for i in range(1, times):
+            rotation = rotation.rotate_right()
+        return rotation
 
     def rotate_left(self):
         if -self.current_rotation == self.max_rotations:
