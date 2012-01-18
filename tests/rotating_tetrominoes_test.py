@@ -151,13 +151,13 @@ class O_Shape(unittest.TestCase):
     def test_is_shaped_like_O(self):
         self.assertEqual(self.expected_shape, str(self.shape))
 
-#    def test_can_not_be_rotated_right(self):
-#        shape = self.shape.rotate_right()
-#        self.assertEqual(self.expected_shape, str(shape))
-#
-#    def test_can_not_be_rotated_left(self):
-#        shape = self.shape.rotate_left()
-#        self.assertEqual(self.expected_shape, str(shape))
+    def test_can_not_be_rotated_right(self):
+        shape = self.shape.rotate_right()
+        self.assertEqual(self.expected_shape, str(shape))
+
+    def test_can_not_be_rotated_left(self):
+        shape = self.shape.rotate_left()
+        self.assertEqual(self.expected_shape, str(shape))
 
 class L_Shape(unittest.TestCase):
     def setUp(self):
@@ -285,12 +285,12 @@ class Z_Shape(unittest.TestCase):
         shape = self.shape.rotate_left()
         self.assertEqual(expected_shape, str(shape))
 
-#    def test_rotating_twice_will_get_back_to_the_original_shape(self):
-#        original_shape = str(self.shape)
-#        shape = self.shape.rotate_right().rotate_right()
-#        self.assertEqual(original_shape, str(shape))
-#        shape = self.shape.rotate_left().rotate_left()
-#        self.assertEqual(original_shape, str(shape))
+    def test_rotating_twice_will_get_back_to_the_original_shape(self):
+        original_shape = str(self.shape)
+        shape = self.shape.rotate_right().rotate_right()
+        self.assertEqual(original_shape, str(shape))
+        shape = self.shape.rotate_left().rotate_left()
+        self.assertEqual(original_shape, str(shape))
 
 class S_Shape(unittest.TestCase):
     def setUp(self):
@@ -316,9 +316,9 @@ class S_Shape(unittest.TestCase):
         shape = self.shape.rotate_left()
         self.assertEqual(expected_shape, str(shape))
 
-#    def test_rotating_twice_will_get_back_to_the_original_shape(self):
-#        original_shape = str(self.shape)
-#        shape = self.shape.rotate_right().rotate_right()
-#        self.assertEqual(original_shape, str(shape))
-#        shape = self.shape.rotate_left().rotate_left()
-#        self.assertEqual(original_shape, str(shape))
+    def test_rotating_twice_will_get_back_to_the_original_shape(self):
+        original_shape = str(self.shape)
+        shape = self.shape.rotate_right().rotate_right()
+        self.assertEqual(original_shape, str(shape))
+        shape = self.shape.rotate_left().rotate_left()
+        self.assertEqual(original_shape, str(shape))
