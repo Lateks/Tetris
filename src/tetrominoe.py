@@ -49,11 +49,10 @@ T_SHAPE = Tetrominoe(".T.\n" + \
                      "TTT\n" + \
                      "...\n", 3, 0)
 
-I_SHAPE = Tetrominoe(".....\n" + \
-                     ".....\n" + \
-                     "IIII.\n" + \
-                     ".....\n" + \
-                     ".....\n", 1, 0)
+I_SHAPE = Tetrominoe("....\n" + \
+                     "IIII\n" + \
+                     "....\n" + \
+                     "....\n", 1, 0)
 
 O_SHAPE = Tetrominoe(".OO\n" + \
                      ".OO\n" + \
