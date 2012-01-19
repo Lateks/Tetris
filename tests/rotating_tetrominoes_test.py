@@ -115,44 +115,67 @@ class I_Shape(unittest.TestCase):
                          "....\n"
         self.assertEqual(expected_shape, str(self.shape))
 
-    def test_can_be_rotated_right_once(self):
-        expected_shape = "..I.\n" + \
+    def test_can_be_rotated_right_three_times(self):
+        rotated_once   = "..I.\n" + \
                          "..I.\n" + \
                          "..I.\n" + \
                          "..I.\n"
-        shape = self.shape.rotate_right()
-        self.assertEqual(expected_shape, str(shape))
-
-    def test_can_be_rotated_left_once(self):
-        expected_shape = ".I..\n" + \
+        rotated_twice  = "....\n" + \
+                         "....\n" + \
+                         "IIII\n" + \
+                         "....\n"
+        rotated_thrice = ".I..\n" + \
                          ".I..\n" + \
                          ".I..\n" + \
                          ".I..\n"
-        shape = self.shape.rotate_left()
-        self.assertEqual(expected_shape, str(shape))
+        shape = self.shape.rotate_right()
+        self.assertEqual(rotated_once, str(shape))
+        shape = shape.rotate_right()
+        self.assertEqual(rotated_twice, str(shape))
+        shape = shape.rotate_right()
+        self.assertEqual(rotated_thrice, str(shape))
 
-    def test_rotating_twice_will_get_back_to_the_original_shape(self):
+    def test_can_be_rotated_right_three_times(self):
+        rotated_once   = ".I..\n" + \
+                         ".I..\n" + \
+                         ".I..\n" + \
+                         ".I..\n"
+        rotated_twice  = "....\n" + \
+                         "....\n" + \
+                         "IIII\n" + \
+                         "....\n"
+        rotated_thrice = "..I.\n" + \
+                         "..I.\n" + \
+                         "..I.\n" + \
+                         "..I.\n"
+        shape = self.shape.rotate_left()
+        self.assertEqual(rotated_once, str(shape))
+        shape = shape.rotate_left()
+        self.assertEqual(rotated_twice, str(shape))
+        shape = shape.rotate_left()
+        self.assertEqual(rotated_thrice, str(shape))
+
+    def test_rotating_4_times_will_get_back_to_the_original_shape(self):
         original_shape = str(self.shape)
-        shape = self.shape.rotate_right().rotate_right()
+        shape = self.shape.rotate_right().rotate_right().rotate_right().rotate_right()
         self.assertEqual(original_shape, str(shape))
-        shape = shape.rotate_left().rotate_left()
+        shape = shape.rotate_left().rotate_left().rotate_left().rotate_left()
         self.assertEqual(original_shape, str(shape))
 
 class O_Shape(unittest.TestCase):
     def setUp(self):
         self.shape = tetrominoe.O_SHAPE
-        self.expected_shape = ".OO\n" + \
-                              ".OO\n" + \
-                              "...\n"
+        self.expected_shape = "....\n" + \
+                              ".OO.\n" + \
+                              ".OO.\n" + \
+                              "....\n"
 
     def test_is_shaped_like_O(self):
         self.assertEqual(self.expected_shape, str(self.shape))
 
-    def test_can_not_be_rotated_right(self):
+    def test_does_not_change_when_rotated(self):
         shape = self.shape.rotate_right()
         self.assertEqual(self.expected_shape, str(shape))
-
-    def test_can_not_be_rotated_left(self):
         shape = self.shape.rotate_left()
         self.assertEqual(self.expected_shape, str(shape))
 
@@ -268,25 +291,45 @@ class Z_Shape(unittest.TestCase):
                          ".ZZ\n"
         self.assertEqual(expected_shape, str(self.shape))
 
-    def test_can_be_rotated_right_once(self):
-        expected_shape = ".Z.\n" + \
+    def test_can_be_rotated_right_three_times(self):
+        rotated_once   = ".Z.\n" + \
                          "ZZ.\n" + \
                          "Z..\n"
-        shape = self.shape.rotate_right()
-        self.assertEqual(expected_shape, str(shape))
-
-    def test_can_be_rotated_left_once(self):
-        expected_shape = "..Z\n" + \
+        rotated_twice  = "ZZ.\n" + \
+                         ".ZZ\n" + \
+                         "...\n"
+        rotated_thrice = "..Z\n" + \
                          ".ZZ\n" + \
                          ".Z.\n"
-        shape = self.shape.rotate_left()
-        self.assertEqual(expected_shape, str(shape))
+        shape = self.shape.rotate_right()
+        self.assertEqual(rotated_once, str(shape))
+        shape = shape.rotate_right()
+        self.assertEqual(rotated_twice, str(shape))
+        shape = shape.rotate_right()
+        self.assertEqual(rotated_thrice, str(shape))
 
-    def test_rotating_twice_will_get_back_to_the_original_shape(self):
+    def test_can_be_rotated_left_three_times(self):
+        rotated_once   = "..Z\n" + \
+                         ".ZZ\n" + \
+                         ".Z.\n"
+        rotated_twice  = "ZZ.\n" + \
+                         ".ZZ\n" + \
+                         "...\n"
+        rotated_thrice = ".Z.\n" + \
+                         "ZZ.\n" + \
+                         "Z..\n"
+        shape = self.shape.rotate_left()
+        self.assertEqual(rotated_once, str(shape))
+        shape = shape.rotate_left()
+        self.assertEqual(rotated_twice, str(shape))
+        shape = shape.rotate_left()
+        self.assertEqual(rotated_thrice, str(shape))
+
+    def test_rotating_4_times_will_get_back_to_the_original_shape(self):
         original_shape = str(self.shape)
-        shape = self.shape.rotate_right().rotate_right()
+        shape = self.shape.rotate_right().rotate_right().rotate_right().rotate_right()
         self.assertEqual(original_shape, str(shape))
-        shape = self.shape.rotate_left().rotate_left()
+        shape = self.shape.rotate_left().rotate_left().rotate_left().rotate_left()
         self.assertEqual(original_shape, str(shape))
 
 class S_Shape(unittest.TestCase):
@@ -299,23 +342,43 @@ class S_Shape(unittest.TestCase):
                          "SS.\n"
         self.assertEqual(expected_shape, str(self.shape))
 
-    def test_can_be_rotated_right_once(self):
-        expected_shape = "S..\n" + \
+    def test_can_be_rotated_right_three_times(self):
+        rotated_once   = "S..\n" + \
                          "SS.\n" + \
                          ".S.\n"
-        shape = self.shape.rotate_right()
-        self.assertEqual(expected_shape, str(shape))
-
-    def test_can_be_rotated_left_once(self):
-        expected_shape = ".S.\n" + \
+        rotated_twice  = ".SS\n" + \
+                         "SS.\n" + \
+                         "...\n"
+        rotated_thrice = ".S.\n" + \
                          ".SS\n" + \
                          "..S\n"
-        shape = self.shape.rotate_left()
-        self.assertEqual(expected_shape, str(shape))
+        shape = self.shape.rotate_right()
+        self.assertEqual(rotated_once, str(shape))
+        shape = shape.rotate_right()
+        self.assertEqual(rotated_twice, str(shape))
+        shape = shape.rotate_right()
+        self.assertEqual(rotated_thrice, str(shape))
 
-    def test_rotating_twice_will_get_back_to_the_original_shape(self):
+    def test_can_be_rotated_left_three_times(self):
+        rotated_once   = ".S.\n" + \
+                         ".SS\n" + \
+                         "..S\n"
+        rotated_twice  = ".SS\n" + \
+                         "SS.\n" + \
+                         "...\n"
+        rotated_thrice = "S..\n" + \
+                         "SS.\n" + \
+                         ".S.\n"
+        shape = self.shape.rotate_left()
+        self.assertEqual(rotated_once, str(shape))
+        shape = shape.rotate_left()
+        self.assertEqual(rotated_twice, str(shape))
+        shape = shape.rotate_left()
+        self.assertEqual(rotated_thrice, str(shape))
+
+    def test_rotating_4_times_will_get_back_to_the_original_shape(self):
         original_shape = str(self.shape)
-        shape = self.shape.rotate_right().rotate_right()
+        shape = self.shape.rotate_right().rotate_right().rotate_right().rotate_right()
         self.assertEqual(original_shape, str(shape))
-        shape = self.shape.rotate_left().rotate_left()
+        shape = self.shape.rotate_left().rotate_left().rotate_left().rotate_left()
         self.assertEqual(original_shape, str(shape))
