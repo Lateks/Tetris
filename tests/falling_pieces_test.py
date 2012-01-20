@@ -17,23 +17,41 @@ class WhenAPieceIsDropped(unittest.TestCase):
     def setUp(self):
         self.board = Board(6, 8)
 
-#    def test_t_shape_starts_from_top_middle(self):
-#        self.board.drop(tetrominoe.T_SHAPE)
-#        self.assertEqual("....T...\n" + \
-#                         "...TTT..\n" + \
-#                         "........\n" + \
-#                         "........\n" + \
-#                         "........\n" + \
-#                         "........\n", str(self.board))
-#
-#    def test_o_shape_starts_from_top_middle(self):
-#        self.board.drop(tetrominoe.O_SHAPE)
-#        self.assertEqual("...OO...\n" + \
-#                         "...OO...\n" + \
-#                         "........\n" + \
-#                         "........\n" + \
-#                         "........\n" + \
-#                         "........\n", str(self.board))
+    def test_t_shape_starts_from_top_middle(self):
+        self.board.drop(tetrominoe.T_SHAPE)
+        self.assertEqual("....T...\n" + \
+                         "...TTT..\n" + \
+                         "........\n" + \
+                         "........\n" + \
+                         "........\n" + \
+                         "........\n", str(self.board))
+
+    def test_o_shape_starts_from_top_middle(self):
+        self.board.drop(tetrominoe.O_SHAPE)
+        self.assertEqual("...OO...\n" + \
+                         "...OO...\n" + \
+                         "........\n" + \
+                         "........\n" + \
+                         "........\n" + \
+                         "........\n", str(self.board))
+
+    def test_i_shape_starts_from_top_middle(self):
+        self.board.drop(tetrominoe.I_SHAPE)
+        self.assertEqual("..IIII..\n" + \
+                         "........\n" + \
+                         "........\n" + \
+                         "........\n" + \
+                         "........\n" + \
+                         "........\n", str(self.board))
+
+    def test_l_shape_starts_from_top_middle(self):
+        self.board.drop(tetrominoe.L_SHAPE)
+        self.assertEqual("...LLL..\n" + \
+                         "...L....\n" + \
+                         "........\n" + \
+                         "........\n" + \
+                         "........\n" + \
+                         "........\n", str(self.board))
 
 #class WhenAPieceReachesTheBottom(unittest.TestCase):
 #    def setUp(self):

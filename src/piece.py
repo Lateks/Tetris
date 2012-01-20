@@ -1,10 +1,45 @@
+from block import Block
+
 class Piece(object):
     def __init__(self, piece_repr):
         self.piece = piece_repr.split('\n')
-        self.piece.pop(-1)
+        if self.piece[-1] == '':
+            self.piece.pop(-1)
+        self.__init_blocks()
+
+    def __init_blocks(self):
+        self.blocks = list()
+        row_mid = len(self.piece[0])/2
+        row_offset = self.__first_non_empty_row()
+        for row in range(0, len(self.piece)):
+            for col in range(0, len(self.piece[row])):
+                block_symbol = self.piece[row][col]
+                if block_symbol != '.':
+                    block = Block(block_symbol)
+                    block.move_to((col - row_mid, row - row_offset))
+                    self.blocks.append(block)
+
+    def __first_non_empty_row(self):
+        for row in range(0, len(self.piece)):
+            if self.__row_non_empty(row):
+                return row
+
+    def __row_non_empty(self, row):
+        for block_symbol in self.piece[row]:
+            if block_symbol != '.':
+                return True
+        return False
 
     def __str__(self):
         return self.__concatenate_rows_to_string(self.piece)
+
+    def move_down(self):
+        for block in self.blocks:
+            block.move_down()
+
+    def move_relative_to_original_position(self, (x, y)):
+        for block in self.blocks:
+            block.move_relative_to_original_position(x, y)
 
     def rotate_right(self):
         ordered_rows, ordered_cols = self.__right_rotation_params()
@@ -47,3 +82,7 @@ class Piece(object):
         for row in rows:
             representation += row + '\n'
         return representation
+
+    def __iter__(self):
+        for block in self.blocks:
+            yield block

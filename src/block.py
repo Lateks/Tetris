@@ -15,5 +15,8 @@ class Block(object):
         return self.position == (x, y)
 
     def move_down(self):
-        x, y = self.position
-        self.position = (x, y + 1)
+        self.move_relative_to_original_position(0, 1)
+
+    def move_relative_to_original_position(self, x, y):
+        orig_x, orig_y = self.position
+        self.position = (orig_x + x, orig_y + y)

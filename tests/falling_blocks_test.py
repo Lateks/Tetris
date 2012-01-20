@@ -1,5 +1,6 @@
 import unittest
 from src.board import Board
+from src.piece import Piece
 from src.block import Block
 from src.exception import IllegalStateException
 
@@ -37,7 +38,7 @@ class ANewBoard(unittest.TestCase):
         self.assertEqual(expected_board, str(self.board))
 
     def test_has_no_falling_blocks(self):
-        self.assertFalse(self.board.has_falling_blocks())
+        self.assertFalse(self.board.has_falling_pieces())
 
     def test_cannot_tick(self):
         with self.assertRaises(IllegalStateException):
@@ -46,10 +47,10 @@ class ANewBoard(unittest.TestCase):
 class WhenABlockIsDropped(unittest.TestCase):
     def setUp(self):
         self.board = Board(3, 3)
-        self.board.drop(Block('X'))
+        self.board.drop(Piece('X'))
 
     def test_a_block_is_falling(self):
-        self.assertTrue(self.board.has_falling_blocks())
+        self.assertTrue(self.board.has_falling_pieces())
 
     def test_block_starts_from_the_top_middle(self):
         expected_board = ".X.\n" + 2 * "...\n"
@@ -62,25 +63,25 @@ class WhenABlockIsDropped(unittest.TestCase):
 
     def test_at_most_one_block_may_be_falling_at_a_time(self):
         with self.assertRaises(IllegalStateException):
-            self.board.drop(Block('Y'))
+            self.board.drop(Piece('Y'))
         expected_board = ".X.\n" + 2 * "...\n"
         self.assertEqual(expected_board, str(self.board))
 
 class WhenABlockReachesTheBottom(unittest.TestCase):
     def setUp(self):
         self.board = Board(3, 3)
-        self.board.drop(Block('X'))
+        self.board.drop(Piece('X'))
         self.board.tick()
         self.board.tick()
 
     def test_block_is_still_falling_on_the_last_row(self):
-        self.assertTrue(self.board.has_falling_blocks())
+        self.assertTrue(self.board.has_falling_pieces())
         expected_board = 2 * "...\n" + ".X.\n"
         self.assertEqual(expected_board, str(self.board))
 
     def test_block_stops_when_it_hits_the_bottom(self):
         self.board.tick()
-        self.assertFalse(self.board.has_falling_blocks())
+        self.assertFalse(self.board.has_falling_pieces())
         expected_board = 2 * "...\n" + ".X.\n"
         self.assertEqual(expected_board, str(self.board))
         with self.assertRaises(IllegalStateException):
@@ -89,21 +90,21 @@ class WhenABlockReachesTheBottom(unittest.TestCase):
 class WhenABlockLandsOnAnotherBlock(unittest.TestCase):
     def setUp(self):
         self.board = Board(3, 3)
-        self.board.drop(Block('X'))
+        self.board.drop(Piece('X'))
         self.board.tick()
         self.board.tick()
         self.board.tick()
-        self.board.drop(Block('Y'))
+        self.board.drop(Piece('Y'))
         self.board.tick()
         self.expected_board = "...\n" + ".Y.\n" + ".X.\n"
 
     def test_block_is_still_falling_right_above_the_other_block(self):
-        self.assertTrue(self.board.has_falling_blocks())
+        self.assertTrue(self.board.has_falling_pieces())
         self.assertEqual(self.expected_board, str(self.board))
 
     def test_block_stops_when_it_hits_another_block(self):
         self.board.tick()
-        self.assertFalse(self.board.has_falling_blocks())
+        self.assertFalse(self.board.has_falling_pieces())
         self.assertEqual(self.expected_board, str(self.board))
         with self.assertRaises(IllegalStateException):
             self.board.tick()

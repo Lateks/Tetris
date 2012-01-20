@@ -165,10 +165,8 @@ class I_Shape(unittest.TestCase):
 class O_Shape(unittest.TestCase):
     def setUp(self):
         self.shape = tetrominoe.O_SHAPE
-        self.expected_shape = "....\n" + \
-                              ".OO.\n" + \
-                              ".OO.\n" + \
-                              "....\n"
+        self.expected_shape = "OO\n" + \
+                              "OO\n"
 
     def test_is_shaped_like_O(self):
         self.assertEqual(self.expected_shape, str(self.shape))

@@ -9,10 +9,8 @@ I_SHAPE = Piece("....\n" + \
                 "....\n" + \
                 "....\n")
 
-O_SHAPE = Piece("....\n" + \
-                ".OO.\n" + \
-                ".OO.\n" + \
-                "....\n")
+O_SHAPE = Piece("OO\n" + \
+                "OO\n")
 
 L_SHAPE = Piece("...\n" + \
                 "LLL\n" + \
